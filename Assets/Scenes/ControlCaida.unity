@@ -268,7 +268,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   timeToReset: 3
-  checkInterval: 1.5
+  delayOnReset: 2
+  checkInterval: 2
+  postProcess: {fileID: 606320975}
+  timeToStartVignette: 1
 --- !u!1 &276258800
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,6 +518,7 @@ GameObject:
   - component: {fileID: 606320970}
   - component: {fileID: 606320973}
   - component: {fileID: 606320974}
+  - component: {fileID: 606320975}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -609,8 +613,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -638,6 +642,23 @@ PositionConstraint:
   m_Sources:
   - sourceTransform: {fileID: 237479951}
     weight: 1
+--- !u!114 &606320975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 606320969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 717cf288792cd3d4f9d0227f327f470e, type: 2}
 --- !u!1 &1328150128 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a6825f41d97c10a428d6e2d86d631c4a,
