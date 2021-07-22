@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 666906242}
   - component: {fileID: 666906241}
   - component: {fileID: 666906240}
+  - component: {fileID: 666906245}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -204,8 +205,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -273,12 +274,29 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666906239}
   m_LocalRotation: {x: 0.009428697, y: 0.93693906, z: -0.34844446, w: 0.025353005}
-  m_LocalPosition: {x: 0.9999999, y: 35.649998, z: -17.119999}
+  m_LocalPosition: {x: 2.8999999, y: 38.949997, z: -16.619999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 40.8, y: 176.9, z: 0}
+--- !u!114 &666906245
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 666906239}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 717cf288792cd3d4f9d0227f327f470e, type: 2}
 --- !u!1001 &670923413
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -345,6 +363,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: EscenarioTest
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a6825f41d97c10a428d6e2d86d631c4a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a6825f41d97c10a428d6e2d86d631c4a, type: 3}
@@ -427,9 +450,9 @@ GameObject:
   - component: {fileID: 1862800796}
   - component: {fileID: 1862800795}
   - component: {fileID: 1862800794}
-  - component: {fileID: 1862800793}
   - component: {fileID: 1862800799}
   - component: {fileID: 1862800800}
+  - component: {fileID: 1862800801}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -437,20 +460,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1862800793
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862800792}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f5dc194b34e52c45bc5a967451877ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  force: 500
-  drawDirection: 1
 --- !u!54 &1862800794
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -538,7 +547,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1862800792}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 27.5, z: -24}
+  m_LocalPosition: {x: 1.9, y: 30.8, z: -23.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -556,14 +565,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76f64bd1b7fee3b4d8238d086d955e3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  controls:
-    m_Name: Controls
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: d8f97479-e73d-410d-8db8-5579df9760d2
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
   walkVelocity: 10
   movementForce: 500
   drawDirection: 1
@@ -643,11 +644,47 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: c6a0a1bb-b077-4a79-ab6b-b59823e905a6
     m_ActionName: Movimiento/Cambio[/XInputControllerWindows/buttonNorth,/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1862800801}
+        m_TargetAssemblyTypeName: FallControl, Assembly-CSharp
+        m_MethodName: Reset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 68293279-a72d-486b-a32c-da4580f9c080
+    m_ActionName: Movimiento/Reset[/Keyboard/r,/XInputControllerWindows/buttonNorth]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Movimiento
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1862800801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862800792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c798e1d551c7be41822ebdbb6416658, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 64
+  timeToReset: 3
+  delayOnReset: 1
+  checkInterval: 2
+  postProcess: {fileID: 666906245}
+  timeToStartVignette: 1
 --- !u!1001 &1877632939
 PrefabInstance:
   m_ObjectHideFlags: 0

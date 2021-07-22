@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public InputAction controls;
     public float walkVelocity;
     public float movementForce;
     public bool drawDirection;

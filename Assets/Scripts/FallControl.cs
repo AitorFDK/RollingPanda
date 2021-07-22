@@ -63,7 +63,7 @@ public class FallControl : MonoBehaviour
     }
 
 
-    void Reset() {
+     public void Reset() {
         transform.position = savedPosition;
         
         StartCoroutine(BlockMovement(delayOnReset));

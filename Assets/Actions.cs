@@ -41,6 +41,14 @@ public class @Actions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Reset"",
+                    ""type"": ""Button"",
+                    ""id"": ""68293279-a72d-486b-a32c-da4580f9c080"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -190,7 +198,7 @@ public class @Actions : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""efe86a61-f81f-4c9d-9ac9-15d0643fdd1b"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Mando"",
@@ -206,6 +214,28 @@ public class @Actions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Teclado"",
                     ""action"": ""Cambio"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6ef47d55-2355-48b3-b796-fb67591568cb"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Teclado"",
+                    ""action"": ""Reset"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8ad317b8-57e5-4e0f-9c1e-2797309fcf09"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mando"",
+                    ""action"": ""Reset"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -247,6 +277,7 @@ public class @Actions : IInputActionCollection, IDisposable
         m_Movimiento_Saltar = m_Movimiento.FindAction("Saltar", throwIfNotFound: true);
         m_Movimiento_Mover = m_Movimiento.FindAction("Mover", throwIfNotFound: true);
         m_Movimiento_Cambio = m_Movimiento.FindAction("Cambio", throwIfNotFound: true);
+        m_Movimiento_Reset = m_Movimiento.FindAction("Reset", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -299,6 +330,7 @@ public class @Actions : IInputActionCollection, IDisposable
     private readonly InputAction m_Movimiento_Saltar;
     private readonly InputAction m_Movimiento_Mover;
     private readonly InputAction m_Movimiento_Cambio;
+    private readonly InputAction m_Movimiento_Reset;
     public struct MovimientoActions
     {
         private @Actions m_Wrapper;
@@ -306,6 +338,7 @@ public class @Actions : IInputActionCollection, IDisposable
         public InputAction @Saltar => m_Wrapper.m_Movimiento_Saltar;
         public InputAction @Mover => m_Wrapper.m_Movimiento_Mover;
         public InputAction @Cambio => m_Wrapper.m_Movimiento_Cambio;
+        public InputAction @Reset => m_Wrapper.m_Movimiento_Reset;
         public InputActionMap Get() { return m_Wrapper.m_Movimiento; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -324,6 +357,9 @@ public class @Actions : IInputActionCollection, IDisposable
                 @Cambio.started -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnCambio;
                 @Cambio.performed -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnCambio;
                 @Cambio.canceled -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnCambio;
+                @Reset.started -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnReset;
+                @Reset.performed -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnReset;
+                @Reset.canceled -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnReset;
             }
             m_Wrapper.m_MovimientoActionsCallbackInterface = instance;
             if (instance != null)
@@ -337,6 +373,9 @@ public class @Actions : IInputActionCollection, IDisposable
                 @Cambio.started += instance.OnCambio;
                 @Cambio.performed += instance.OnCambio;
                 @Cambio.canceled += instance.OnCambio;
+                @Reset.started += instance.OnReset;
+                @Reset.performed += instance.OnReset;
+                @Reset.canceled += instance.OnReset;
             }
         }
     }
@@ -364,5 +403,6 @@ public class @Actions : IInputActionCollection, IDisposable
         void OnSaltar(InputAction.CallbackContext context);
         void OnMover(InputAction.CallbackContext context);
         void OnCambio(InputAction.CallbackContext context);
+        void OnReset(InputAction.CallbackContext context);
     }
 }

@@ -28,6 +28,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Reset",
+                    "type": "Button",
+                    "id": "68293279-a72d-486b-a32c-da4580f9c080",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -177,7 +185,7 @@
                 {
                     "name": "",
                     "id": "efe86a61-f81f-4c9d-9ac9-15d0643fdd1b",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
                     "processors": "",
                     "groups": "Mando",
@@ -193,6 +201,28 @@
                     "processors": "",
                     "groups": "Teclado",
                     "action": "Cambio",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6ef47d55-2355-48b3-b796-fb67591568cb",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Teclado",
+                    "action": "Reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8ad317b8-57e5-4e0f-9c1e-2797309fcf09",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mando",
+                    "action": "Reset",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
