@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
+        Application.targetFrameRate = 60;
     }
 
     // Update is called once per frame
