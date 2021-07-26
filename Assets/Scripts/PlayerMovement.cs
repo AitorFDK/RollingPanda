@@ -22,10 +22,14 @@ public class PlayerMovement : MonoBehaviour
     public float sphereCastRadious;
     public LayerMask groundMask;
 
+    [Header("Gravity")]
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplayer = 2f;
+
     public enum PandaState { Walking, Rolling}
     public PandaState pandaState;
 
-    private Vector3 direction;
+    public Vector3 direction;
     private Vector2 inputMovement;
     private Rigidbody rb;
     private bool jumpPressed;
@@ -36,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = 120;
     }
 
     // Update is called once per frame
@@ -75,6 +79,16 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = new Vector3(rb.velocity.x, jumpVelocity, rb.velocity.z);
                 jumpTime += Time.deltaTime;
             }
+        }
+
+        //Gravedad
+        if(rb.velocity.y < -1)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y + 1 * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime, rb.velocity.z);
+        }
+        else
+        {
+            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y + 1 * Physics.gravity.y * (lowJumpMultiplayer - 1) * Time.deltaTime, rb.velocity.z);
         }
 
 
