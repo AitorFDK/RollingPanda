@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 
 public class FallControl : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class FallControl : MonoBehaviour
     float currentTime = 0f;
     float timeFalling = 0f;
 
+    Vector3 initialPosition;
     Vector3 savedPosition;
     RaycastHit hit;
     Vignette vg;
@@ -25,6 +28,7 @@ public class FallControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        initialPosition = transform.position;
         savedPosition = transform.position;
         postProcess.profile.TryGet<Vignette>(out vg);
     }
@@ -62,12 +66,36 @@ public class FallControl : MonoBehaviour
         }
     }
 
+    float lastPress = 0;
+    public void ResetAction(InputAction.CallbackContext ctx) {
+        if (ctx.phase == InputActionPhase.Started) {
+            if (Time.time - lastPress < delayOnReset){
+                ResetLevel();
+            } else {
+                Reset();
+            }
+
+
+            lastPress = Time.time;
+        }
+    }
+
+    public void ResetLevel() {
+        Debug.Log("ResetLevel");
+        transform.position = initialPosition;
+        StartCoroutine(BlockMovement(delayOnReset));
+        StartCoroutine(RestartTimer(delayOnReset));
+    }
 
      public void Reset() {
+        Debug.Log("Reset");
         transform.position = savedPosition;
-        
         StartCoroutine(BlockMovement(delayOnReset));
-        
+    }
+
+    IEnumerator RestartTimer(float delay) {
+        yield return new WaitForSeconds(delay);
+        GameObject.FindObjectOfType<Timer>().Reset();
     }
 
     IEnumerator BlockMovement(float time) {
