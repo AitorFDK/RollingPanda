@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Transform _camera;
+
     [Header("Movement parameters")]
     public float walkVelocity;
     public float movementForce;
@@ -35,18 +37,25 @@ public class PlayerMovement : MonoBehaviour
     private bool jumpPressed;
     private bool grounded;
 
+    private Vector3 forward;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Application.targetFrameRate = 120;
+        Application.targetFrameRate = 60;
+        forward = Vector3.forward;
     }
 
     // Update is called once per frame
     void Update()
     {
         direction = new Vector3(inputMovement.x, 0, inputMovement.y);
+
+        if (rb.velocity.magnitude >= 0.2f)
+            forward = rb.velocity.normalized;
+
 
         //Movimiento
         switch (pandaState) {
@@ -55,6 +64,9 @@ public class PlayerMovement : MonoBehaviour
                 rb.MovePosition(aux);
                 break;
             case PandaState.Rolling:
+                //transform.forward = forward;
+                //Vector3 finalDirection = new Vector3()
+                Vector3 finalDirection = Vector3.Project(direction, forward);
                 rb.AddForce(direction * movementForce * Time.deltaTime, ForceMode.Acceleration);
                 break;
         }
@@ -93,9 +105,18 @@ public class PlayerMovement : MonoBehaviour
 
 
         //Limitadores de velocidad
-        if (rb.velocity.magnitude >= velocityLimit) rb.velocity = rb.velocity.normalized * velocityLimit;
 
-        if (inputMovement == Vector2.zero && rb.velocity.magnitude <= 1f && grounded) rb.velocity = Vector3.zero;
+        if (rb.velocity.magnitude >= velocityLimit)
+        {
+            rb.velocity = forward * velocityLimit;
+        }
+
+
+
+
+        if (inputMovement == Vector2.zero && rb.velocity.magnitude <= 1f && grounded)
+            rb.velocity = Vector3.zero;
+            
 
         // Lineas de debug
         if (drawDirection && direction != Vector3.zero)
