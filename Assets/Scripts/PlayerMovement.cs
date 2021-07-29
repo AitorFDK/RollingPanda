@@ -56,6 +56,7 @@ public class PlayerMovement : MonoBehaviour
         if (rb.velocity.magnitude >= 0.2f)
             forward = rb.velocity.normalized;
 
+        
 
         //Movimiento
         switch (pandaState) {
@@ -65,9 +66,8 @@ public class PlayerMovement : MonoBehaviour
                 break;
             case PandaState.Rolling:
                 //transform.forward = forward;
-                //Vector3 finalDirection = new Vector3()
-                Vector3 finalDirection = Vector3.Project(direction, forward);
-                rb.AddForce(direction * movementForce * Time.deltaTime, ForceMode.Acceleration);
+                //rb.AddForce(direction * movementForce * Time.deltaTime, ForceMode.Acceleration);
+                rb.AddForce(transform.forward * movementForce * Time.deltaTime, ForceMode.Acceleration);
                 break;
         }
 
@@ -93,8 +93,17 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        //Rotacio personaje
+        if( direction != Vector3.zero)
+        {
+            transform.forward = Vector3.Slerp(transform.forward, direction, 1f * Time.deltaTime);
+
+        }
+        //transform.right = direction.x;
+
+
         //Gravedad
-        if(rb.velocity.y < -1)
+        if (rb.velocity.y < -1)
         {
             rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y + 1 * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime, rb.velocity.z);
         }
@@ -144,6 +153,7 @@ public class PlayerMovement : MonoBehaviour
     public void Jump(InputAction.CallbackContext context)
     {
         jumpPressed = context.ReadValue<float>() != 0;
+        //CameraUtil.shakeCamera();
     }
 
     public void ChangeMode(InputAction.CallbackContext context)
