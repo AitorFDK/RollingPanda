@@ -2230,7 +2230,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.482873, y: 1}
+    m_SensorSize: {x: 1.3237569, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -18964,7 +18964,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1349421070}
-  m_LocalRotation: {x: 0.007675845, y: -0.7736641, z: 0.6005709, w: -0.20174146}
+  m_LocalRotation: {x: 0.0076758526, y: -0.7736641, z: 0.6005709, w: -0.20174146}
   m_LocalPosition: {x: -1.1863815, y: 3.6862774, z: 21.003828}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -19008,7 +19008,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.482873, y: 1}
+    m_SensorSize: {x: 1.3237569, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -20742,8 +20742,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492073783}
-  m_LocalRotation: {x: -0.0016965866, y: -0.010938683, z: 0.009147057, w: 0.99989694}
-  m_LocalPosition: {x: 0.08554661, y: -0.012470245, z: 16.595835}
+  m_LocalRotation: {x: -0.0016964674, y: -0.010940136, z: 0.009148277, w: 0.9998969}
+  m_LocalPosition: {x: 0.08555806, y: -0.012469292, z: 16.595837}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 719133725}
@@ -20786,7 +20786,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.482873, y: 1}
+    m_SensorSize: {x: 1.3237569, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -20819,8 +20819,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1495135521}
-  m_LocalRotation: {x: -0.00014456267, y: -0.77865493, z: 0.62741035, w: 0.0072681643}
-  m_LocalPosition: {x: 0.04361677, y: 3.8432684, z: 21.190926}
+  m_LocalRotation: {x: -0.00014453218, y: -0.77865493, z: 0.6274104, w: 0.0072666667}
+  m_LocalPosition: {x: 0.04360795, y: 3.8432684, z: 21.190926}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 666732925}
@@ -20863,7 +20863,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.482873, y: 1}
+    m_SensorSize: {x: 1.3237569, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -26105,18 +26105,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkVelocity: 10
   movementForce: 700
+  airMovementForce: 400
   drawDirection: 1
   velocityLimit: 35
-  jumpForce: 5
+  jumpCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.25274003
+      value: 1.9921025
+      inSlope: 2.7972403
+      outSlope: 2.7972403
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.16490954
+    - serializedVersion: 3
+      time: 0.35667276
+      value: 2.0175238
+      inSlope: -3.9882016
+      outSlope: -3.9882016
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.05666702
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   coyoteTime: 0.25
-  maxJumpTime: 0.2
+  maxJumpTime: 1
   castGroundDistance: 0.2
   sphereCastRadious: 0.5
   groundMask:
     serializedVersion: 2
     m_Bits: 64
   fallMultiplier: 2.5
-  lowJumpMultiplayer: 2
   pandaState: 1
   direction: {x: 0, y: 0, z: 0}
 --- !u!114 &1862800800
