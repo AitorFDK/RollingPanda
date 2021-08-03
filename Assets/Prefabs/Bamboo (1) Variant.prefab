@@ -70,7 +70,7 @@ PrefabInstance:
     - target: {fileID: 3307257861541426759, guid: a7fa9be68192ded4287bcec81659fcbf,
         type: 3}
       propertyPath: m_Name
-      value: Bamboo (1)
+      value: Bamboo (1) Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7fa9be68192ded4287bcec81659fcbf, type: 3}
