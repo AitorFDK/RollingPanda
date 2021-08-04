@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PositionTracker : MonoBehaviour
 {
-    public enum InitialState {Recording, Playing, NaDeNa};
+    public enum InitialState { Recording, Playing, NaDeNa };
 
     public InitialState initialState = InitialState.NaDeNa;
     public string trackName;
@@ -22,11 +22,12 @@ public class PositionTracker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        switch(initialState){
+        switch (initialState)
+        {
             case InitialState.Recording:
                 StartRecording();
                 break;
-            
+
             case InitialState.Playing:
                 LoadTrack();
                 PlayTrack();
@@ -39,17 +40,20 @@ public class PositionTracker : MonoBehaviour
     {
         time += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.P)) SaveTrack();        
-            
-        if (playingTrack) {
-            int iTime = (int)(time * 1000000);
-            float currentTime = iTime  / 1000000f;
+        if (Input.GetKeyDown(KeyCode.P)) SaveTrack();
 
-            if (node != null){
+        if (playingTrack)
+        {
+            int iTime = (int)(time * 1000000);
+            float currentTime = iTime / 1000000f;
+
+            if (node != null && node.Value != null)
+            {
                 if (currentTime > node.Value.time)
                     node = node.Next;
 
-                transform.position = node.Value.position;
+                if (node != null)
+                    transform.position = node.Value.position;
             }
         }
     }
@@ -82,7 +86,8 @@ public class PositionTracker : MonoBehaviour
         }
     }
 
-    public void PlayTrack() {
+    public void PlayTrack()
+    {
         StopRecording();
         playingTrack = true;
         time = 0;
@@ -91,18 +96,23 @@ public class PositionTracker : MonoBehaviour
 
     public void SaveTrack()
     {
-        if (recordingCoroutine != null){
+        if (recordingCoroutine != null)
+        {
             string json = JsonUtility.ToJson(track);
             Track t = JsonUtility.FromJson<Track>(json);
             File.WriteAllText(string.Format("{0}/Tracks/{1}.json", Application.persistentDataPath, trackName), json);
         }
     }
 
-    public void LoadTrack() {
-        if (File.Exists(string.Format("{0}/Tracks/{1}.json", Application.persistentDataPath, trackName))){
+    public void LoadTrack()
+    {
+        if (File.Exists(string.Format("{0}/Tracks/{1}.json", Application.persistentDataPath, trackName)))
+        {
             string json = File.ReadAllText(string.Format("{0}/Tracks/{1}.json", Application.persistentDataPath, trackName));
             track = JsonUtility.FromJson<Track>(json);
-        } else {
+        }
+        else
+        {
             Debug.LogWarning(string.Format("NO ESISTE: {0}/Tracks/{1}.json", Application.persistentDataPath, trackName));
         }
     }

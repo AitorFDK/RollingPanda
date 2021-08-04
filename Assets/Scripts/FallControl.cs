@@ -81,10 +81,11 @@ public class FallControl : MonoBehaviour
     }
 
     public void ResetLevel() {
-        Debug.Log("ResetLevel");
-        transform.position = initialPosition;
-        StartCoroutine(BlockMovement(delayOnReset));
-        StartCoroutine(RestartTimer(delayOnReset));
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // Debug.Log("ResetLevel");
+        // transform.position = initialPosition;
+        // StartCoroutine(BlockMovement(delayOnReset));
+        // StartCoroutine(RestartTimer(delayOnReset));
     }
 
      public void Reset() {
