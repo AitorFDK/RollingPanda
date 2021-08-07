@@ -67,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
             case PandaState.Rolling:
                 //transform.forward = forward;
                 //rb.AddForce(direction * movementForce * Time.deltaTime, ForceMode.Acceleration);
-                rb.AddForce(transform.forward * movementForce * Time.deltaTime, ForceMode.Acceleration);
+                rb.AddForce(direction * movementForce * Time.deltaTime, ForceMode.Acceleration);
                 break;
         }
 
@@ -94,11 +94,11 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Rotacio personaje
-        if( direction != Vector3.zero)
+        /*if( direction != Vector3.zero)
         {
             transform.forward = Vector3.Slerp(transform.forward, direction, 1f * Time.deltaTime);
 
-        }
+        }*/
         //transform.right = direction.x;
 
 
