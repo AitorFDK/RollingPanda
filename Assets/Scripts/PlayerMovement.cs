@@ -46,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Application.targetFrameRate = 120;
+        Application.targetFrameRate = 60;
 
         maxJumpTime = jumpCurve.keys[jumpCurve.length - 1].time;
     }
