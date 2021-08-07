@@ -11,11 +11,12 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement parameters")]
     public float walkVelocity;
     public float movementForce;
+    public float airMovementForce;
     public bool drawDirection;
     public float velocityLimit;
 
     [Header("Jump parameters")]
-    public float jumpForce;
+    public AnimationCurve jumpCurve;
     public float coyoteTime;
     public float maxJumpTime;
     private float airTime;
@@ -26,9 +27,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Gravity")]
     public float fallMultiplier = 2.5f;
-    public float lowJumpMultiplayer = 2f;
 
-    public enum PandaState { Walking, Rolling}
+    public enum PandaState { Walking, Rolling }
     public PandaState pandaState;
 
     public Vector3 direction;
@@ -36,84 +36,86 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private bool jumpPressed;
     private bool grounded;
+    private float jumpY = 0;
+    private float jumps = 0;
+
 
     private Vector3 forward;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Application.targetFrameRate = 60;
-        forward = Vector3.forward;
+        Application.targetFrameRate = 120;
+
+        maxJumpTime = jumpCurve.keys[jumpCurve.length - 1].time;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         direction = new Vector3(inputMovement.x, 0, inputMovement.y);
 
-        if (rb.velocity.magnitude >= 0.2f)
-            forward = rb.velocity.normalized;
+        /* if (rb.velocity.magnitude >= 0.2f)
+            forward = rb.velocity.normalized;*/
 
-        
-
-        //Movimiento
-        switch (pandaState) {
+        ////////////// MOVIMIENTO
+        switch (pandaState)
+        {
             case PandaState.Walking:
                 Vector3 aux = transform.localPosition + direction * walkVelocity * Time.deltaTime;
                 rb.MovePosition(aux);
                 break;
             case PandaState.Rolling:
-                //transform.forward = forward;
-                //rb.AddForce(direction * movementForce * Time.deltaTime, ForceMode.Acceleration);
-                rb.AddForce(direction * movementForce * Time.deltaTime, ForceMode.Acceleration);
+                rb.AddForce(direction * (grounded ? movementForce : airMovementForce) * Time.deltaTime, ForceMode.Acceleration);
                 break;
         }
 
-        // grounded
+        ////////////// TOCANDO EL SUELO???
         RaycastHit hitInfo;
 
         if (grounded = Physics.SphereCast(transform.position + Vector3.up * 0.12f, sphereCastRadious, Vector3.down, out hitInfo, castGroundDistance, groundMask))
         {
+            if (airTime > 1) {
+                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+                transform.position = hitInfo.point + Vector3.up * 0.5f;
+            }
             airTime = 0;
             jumpTime = 0;
+            jumps = 0;
         }
         else
             airTime += Time.deltaTime;
 
-        //Salto
-        if (jumpPressed && jumpTime < maxJumpTime) {
-            if (grounded || airTime < coyoteTime)
-            {
-                float jumpVelocity = jumpForce * (rb.velocity.magnitude / velocityLimit);
-                //rb.AddForce(Vector3.up * jumpForce * Time.deltaTime, ForceMode.Impulse);
-                rb.velocity = new Vector3(rb.velocity.x, jumpVelocity, rb.velocity.z);
-                jumpTime += Time.deltaTime;
-            }
+        ////////////// GRAVEDAD
+        if (!grounded && (jumpTime == 0 || jumpTime >= maxJumpTime))
+        {
+            rb.velocity = rb.velocity + Vector3.down * -Physics.gravity.y * (fallMultiplier * Time.deltaTime);
         }
 
-        //Rotacio personaje
-        /*if( direction != Vector3.zero)
-        {
-            transform.forward = Vector3.Slerp(transform.forward, direction, 1f * Time.deltaTime);
+        ////////////// SALTO
+        if (!jumpPressed) jumpTime = 0;
 
-        }*/
-        //transform.right = direction.x;
-
-
-        //Gravedad
-        if (rb.velocity.y < -1)
+        if (jumpPressed && (grounded || airTime < coyoteTime) && jumps == 0)
         {
-            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y + 1 * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime, rb.velocity.z);
-        }
-        else
-        {
-            rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y + 1 * Physics.gravity.y * (lowJumpMultiplayer - 1) * Time.deltaTime, rb.velocity.z);
+            jumpTime = 0.000001f; // pirulilla para que entre en el timing de saltar
+            jumpY = transform.position.y;
+            jumps++;
         }
 
+        if (jumpTime > 0 && jumpTime < maxJumpTime)
+        {
+            jumpTime += Time.deltaTime;
 
-        //Limitadores de velocidad
+            float yOffset = jumpCurve.Evaluate(jumpTime);
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+
+            Vector3 p = transform.position;
+            transform.position = new Vector3(p.x, jumpY + yOffset, p.z);
+        }
+
+        ////////////// LIMITADOR VELOCIDAD
+        if (rb.velocity.magnitude >= velocityLimit) rb.velocity = rb.velocity.normalized * velocityLimit;
 
         if (rb.velocity.magnitude >= velocityLimit)
         {
@@ -127,20 +129,25 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = Vector3.zero;
             
 
-        // Lineas de debug
+        ////////////// DEBUG INFO
         if (drawDirection && direction != Vector3.zero)
         {
             Debug.DrawLine(transform.position, transform.position + direction * 5, Color.red);
         }
 
-       
+        if (drawDirection)
+        {
+            Debug.DrawLine(transform.position, transform.position + rb.velocity.normalized * 5, Color.blue);
+        }
+
+
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawRay(transform.position + Vector3.up * 0.12f , Vector3.down * castGroundDistance);
-        
+        Gizmos.DrawRay(transform.position + Vector3.up * 0.12f, Vector3.down * castGroundDistance);
+
     }
 
 

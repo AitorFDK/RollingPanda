@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4439355644142095619
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2787285256132832509, guid: a7fa9be68192ded4287bcec81659fcbf,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787285256132832509, guid: a7fa9be68192ded4287bcec81659fcbf,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787285256132832509, guid: a7fa9be68192ded4287bcec81659fcbf,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.818373
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787285256132832509, guid: a7fa9be68192ded4287bcec81659fcbf,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 25.396423
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787285256132832509, guid: a7fa9be68192ded4287bcec81659fcbf,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -28.673769
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787285256132832509, guid: a7fa9be68192ded4287bcec81659fcbf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787285256132832509, guid: a7fa9be68192ded4287bcec81659fcbf,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787285256132832509, guid: a7fa9be68192ded4287bcec81659fcbf,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787285256132832509, guid: a7fa9be68192ded4287bcec81659fcbf,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787285256132832509, guid: a7fa9be68192ded4287bcec81659fcbf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787285256132832509, guid: a7fa9be68192ded4287bcec81659fcbf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2787285256132832509, guid: a7fa9be68192ded4287bcec81659fcbf,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3307257861541426759, guid: a7fa9be68192ded4287bcec81659fcbf,
+        type: 3}
+      propertyPath: m_Name
+      value: Bamboo Variant
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a7fa9be68192ded4287bcec81659fcbf, type: 3}
