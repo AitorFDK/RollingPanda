@@ -49,6 +49,14 @@ public class @Actions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pausar"",
+                    ""type"": ""Button"",
+                    ""id"": ""fadcc9b5-3774-486a-b699-761ba97bf76e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -238,6 +246,28 @@ public class @Actions : IInputActionCollection, IDisposable
                     ""action"": ""Reset"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b64adb43-fbed-4afc-bcb3-17e690caff89"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Teclado"",
+                    ""action"": ""Pausar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a7c9fc19-2461-464e-b530-f2eec247e06f"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mando"",
+                    ""action"": ""Pausar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -278,6 +308,7 @@ public class @Actions : IInputActionCollection, IDisposable
         m_Movimiento_Mover = m_Movimiento.FindAction("Mover", throwIfNotFound: true);
         m_Movimiento_Cambio = m_Movimiento.FindAction("Cambio", throwIfNotFound: true);
         m_Movimiento_Reset = m_Movimiento.FindAction("Reset", throwIfNotFound: true);
+        m_Movimiento_Pausar = m_Movimiento.FindAction("Pausar", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -331,6 +362,7 @@ public class @Actions : IInputActionCollection, IDisposable
     private readonly InputAction m_Movimiento_Mover;
     private readonly InputAction m_Movimiento_Cambio;
     private readonly InputAction m_Movimiento_Reset;
+    private readonly InputAction m_Movimiento_Pausar;
     public struct MovimientoActions
     {
         private @Actions m_Wrapper;
@@ -339,6 +371,7 @@ public class @Actions : IInputActionCollection, IDisposable
         public InputAction @Mover => m_Wrapper.m_Movimiento_Mover;
         public InputAction @Cambio => m_Wrapper.m_Movimiento_Cambio;
         public InputAction @Reset => m_Wrapper.m_Movimiento_Reset;
+        public InputAction @Pausar => m_Wrapper.m_Movimiento_Pausar;
         public InputActionMap Get() { return m_Wrapper.m_Movimiento; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -360,6 +393,9 @@ public class @Actions : IInputActionCollection, IDisposable
                 @Reset.started -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnReset;
                 @Reset.performed -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnReset;
                 @Reset.canceled -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnReset;
+                @Pausar.started -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnPausar;
+                @Pausar.performed -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnPausar;
+                @Pausar.canceled -= m_Wrapper.m_MovimientoActionsCallbackInterface.OnPausar;
             }
             m_Wrapper.m_MovimientoActionsCallbackInterface = instance;
             if (instance != null)
@@ -376,6 +412,9 @@ public class @Actions : IInputActionCollection, IDisposable
                 @Reset.started += instance.OnReset;
                 @Reset.performed += instance.OnReset;
                 @Reset.canceled += instance.OnReset;
+                @Pausar.started += instance.OnPausar;
+                @Pausar.performed += instance.OnPausar;
+                @Pausar.canceled += instance.OnPausar;
             }
         }
     }
@@ -404,5 +443,6 @@ public class @Actions : IInputActionCollection, IDisposable
         void OnMover(InputAction.CallbackContext context);
         void OnCambio(InputAction.CallbackContext context);
         void OnReset(InputAction.CallbackContext context);
+        void OnPausar(InputAction.CallbackContext context);
     }
 }
