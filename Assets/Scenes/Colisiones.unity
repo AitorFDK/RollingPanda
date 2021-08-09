@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 1.0669727, g: 0.48399076, b: 1.1203909, a: 1}
+  m_IndirectSpecularColor: {r: 1.0647075, g: 0.48474276, b: 1.1049881, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4879,12 +4879,12 @@ PrefabInstance:
     - target: {fileID: 1982654174023520461, guid: 01eb5c8abed42b04988cc83fb2181144,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.000000015312011
+      value: 0.000000041833207
       objectReference: {fileID: 0}
     - target: {fileID: 1982654174023520461, guid: 01eb5c8abed42b04988cc83fb2181144,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.000000006351813
+      value: 0.000000017353486
       objectReference: {fileID: 0}
     - target: {fileID: 1982654174023520461, guid: 01eb5c8abed42b04988cc83fb2181144,
         type: 3}
@@ -18665,12 +18665,12 @@ PrefabInstance:
     - target: {fileID: 4761647970617925369, guid: 305e73074b026634bb503d0438e8332c,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.000000015312011
+      value: 0.000000041833207
       objectReference: {fileID: 0}
     - target: {fileID: 4761647970617925369, guid: 305e73074b026634bb503d0438e8332c,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.000000006351813
+      value: 0.000000017353486
       objectReference: {fileID: 0}
     - target: {fileID: 4761647970617925369, guid: 305e73074b026634bb503d0438e8332c,
         type: 3}
@@ -25504,8 +25504,13 @@ PrefabInstance:
     - target: {fileID: 2908559140284502398, guid: da76ca40e697cfb49adbf07de78c33dc,
         type: 3}
       propertyPath: textMeshes.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2908559140284502398, guid: da76ca40e697cfb49adbf07de78c33dc,
+        type: 3}
+      propertyPath: textMeshes.Array.data[1]
+      value: 
+      objectReference: {fileID: 1792197080}
     - target: {fileID: 2908559140284502398, guid: da76ca40e697cfb49adbf07de78c33dc,
         type: 3}
       propertyPath: textMeshes.Array.data[2]
@@ -25614,6 +25619,11 @@ PrefabInstance:
     - target: {fileID: 2908559140284502399, guid: da76ca40e697cfb49adbf07de78c33dc,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2908559141263400156, guid: da76ca40e697cfb49adbf07de78c33dc,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
