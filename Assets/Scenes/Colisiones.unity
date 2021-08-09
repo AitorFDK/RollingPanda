@@ -25987,6 +25987,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 0}
+  fantasmaGO: {fileID: 966767788}
   walkVelocity: 10
   movementForce: 700
   airMovementForce: 400
