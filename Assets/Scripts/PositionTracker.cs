@@ -40,8 +40,6 @@ public class PositionTracker : MonoBehaviour
     {
         time += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.P)) SaveTrack();
-
         if (playingTrack)
         {
             int iTime = (int)(time * 1000000);
