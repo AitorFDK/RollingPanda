@@ -112,6 +112,7 @@ public class PositionTracker : MonoBehaviour
         else
         {
             Debug.LogWarning(string.Format("NO ESISTE: {0}/Tracks/{1}.json", Application.persistentDataPath, trackName));
+            this.gameObject.SetActive(false);
         }
     }
 }

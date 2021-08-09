@@ -38,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
     private bool grounded;
     private float jumpY = 0;
     private float jumps = 0;
+    private bool trackStarted = false;
 
 
     private Vector3 forward;
@@ -46,9 +47,13 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        Application.targetFrameRate = 60;
+        Application.targetFrameRate = 120;
 
         maxJumpTime = jumpCurve.keys[jumpCurve.length - 1].time;
+
+        
+        GameObject.FindObjectOfType<Timer>().Pause();
+        rb.constraints = RigidbodyConstraints.FreezeAll;
     }
 
     // private void FixedUpdate() {
@@ -60,8 +65,14 @@ public class PlayerMovement : MonoBehaviour
     {
         direction = new Vector3(inputMovement.x, 0, inputMovement.y);
 
-        /* if (rb.velocity.magnitude >= 0.2f)
-            forward = rb.velocity.normalized;*/
+        if (!trackStarted && direction.magnitude >= .3f) {
+            rb.constraints = RigidbodyConstraints.None;
+            trackStarted = true;
+            GameObject.FindObjectOfType<Timer>().Reset();
+            GameObject.FindObjectOfType<Timer>().Resume();
+        }
+
+        if (!trackStarted) return;
 
         ////////////// MOVIMIENTO
         switch (pandaState)
