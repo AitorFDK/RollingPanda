@@ -86,10 +86,15 @@ public class PositionTracker : MonoBehaviour
 
     public void PlayTrack()
     {
-        StopRecording();
-        playingTrack = true;
-        time = 0;
-        node = track.track.First;
+        if (track.track.Count > 0)
+        {
+            StopRecording();
+            playingTrack = true;
+            time = 0;
+            node = track.track.First;
+        } else {
+            this.gameObject.SetActive(false);
+        }
     }
 
     public void SaveTrack()

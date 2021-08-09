@@ -76,7 +76,10 @@ public class PlayerMovement : MonoBehaviour
             PositionTracker pt = GetComponent<PositionTracker>();
             pt.StopRecording();
             pt.StartRecording();
+
             fantasmaGO.SetActive(true);
+            fantasmaGO.GetComponent<PositionTracker>().LoadTrack();
+            fantasmaGO.GetComponent<PositionTracker>().PlayTrack();
         }
 
         if (!trackStarted) return;
