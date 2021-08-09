@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     public Transform _camera;
+    public GameObject fantasmaGO;
 
     [Header("Movement parameters")]
     public float walkVelocity;
@@ -31,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     public enum PandaState { Walking, Rolling }
     public PandaState pandaState;
 
+
     public Vector3 direction;
     private Vector2 inputMovement;
     private Rigidbody rb;
@@ -39,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
     private float jumpY = 0;
     private float jumps = 0;
     private bool trackStarted = false;
-
 
     private Vector3 forward;
 
@@ -54,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
         
         GameObject.FindObjectOfType<Timer>().Pause();
         rb.constraints = RigidbodyConstraints.FreezeAll;
+
+        fantasmaGO.SetActive(false);
     }
 
     // private void FixedUpdate() {
@@ -73,6 +76,7 @@ public class PlayerMovement : MonoBehaviour
             PositionTracker pt = GetComponent<PositionTracker>();
             pt.StopRecording();
             pt.StartRecording();
+            fantasmaGO.SetActive(true);
         }
 
         if (!trackStarted) return;
