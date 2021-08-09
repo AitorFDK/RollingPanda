@@ -117,10 +117,10 @@ public class PlayerMovement : MonoBehaviour
         ////////////// LIMITADOR VELOCIDAD
         if (rb.velocity.magnitude >= velocityLimit) rb.velocity = rb.velocity.normalized * velocityLimit;
 
-        if (rb.velocity.magnitude >= velocityLimit)
-        {
-            rb.velocity = forward * velocityLimit;
-        }
+        // if (rb.velocity.magnitude >= velocityLimit)
+        // {
+        //     rb.velocity = forward * velocityLimit;
+        // }
 
 
 
