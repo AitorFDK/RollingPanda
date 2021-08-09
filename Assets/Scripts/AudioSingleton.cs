@@ -92,7 +92,7 @@ public class AudioSingleton : MonoBehaviour {
 	AudioClip nextSong() {
 		int i = Random.Range(0, songs.Length);
 		
-		if (currentSong == songs[i]) return nextSong();
+		if (songs.Length > 1 && currentSong == songs[i]) return nextSong();
 
 		return songs[i];
 	}

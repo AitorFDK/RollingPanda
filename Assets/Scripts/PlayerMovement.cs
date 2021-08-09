@@ -51,6 +51,10 @@ public class PlayerMovement : MonoBehaviour
         maxJumpTime = jumpCurve.keys[jumpCurve.length - 1].time;
     }
 
+    // private void FixedUpdate() {
+    //     rb.rotation = Quaternion.Lerp(Quaternion.LookRotation(rb.velocity.normalized, Vector3.up), Quaternion.LookRotation(direction.normalized, Vector3.up), .1f);
+    // }
+
 
     void Update()
     {
@@ -76,10 +80,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (grounded = Physics.SphereCast(transform.position + Vector3.up * 0.12f, sphereCastRadious, Vector3.down, out hitInfo, castGroundDistance, groundMask))
         {
-            if (airTime > 1) {
-                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-                transform.position = hitInfo.point + Vector3.up * 0.5f;
-            }
+            // if (airTime > 1) {
+            //     rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            //     transform.position = hitInfo.point + Vector3.up * 0.5f;
+            // }
             airTime = 0;
             jumpTime = 0;
             jumps = 0;
