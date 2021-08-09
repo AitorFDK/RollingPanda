@@ -98,6 +98,8 @@ public class PositionTracker : MonoBehaviour
         {
             string json = JsonUtility.ToJson(track);
             Track t = JsonUtility.FromJson<Track>(json);
+
+            Directory.CreateDirectory(string.Format("{0}/Tracks", Application.persistentDataPath));
             File.WriteAllText(string.Format("{0}/Tracks/{1}.json", Application.persistentDataPath, trackName), json);
         }
     }
