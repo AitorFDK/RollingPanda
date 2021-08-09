@@ -70,6 +70,9 @@ public class PlayerMovement : MonoBehaviour
             trackStarted = true;
             GameObject.FindObjectOfType<Timer>().Reset();
             GameObject.FindObjectOfType<Timer>().Resume();
+            PositionTracker pt = GetComponent<PositionTracker>();
+            pt.StopRecording();
+            pt.StartRecording();
         }
 
         if (!trackStarted) return;

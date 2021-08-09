@@ -56,7 +56,7 @@ public class PositionTracker : MonoBehaviour
         }
     }
 
-    void StartRecording()
+    public void StartRecording()
     {
         if (recordingCoroutine == null)
         {
@@ -66,7 +66,7 @@ public class PositionTracker : MonoBehaviour
         }
     }
 
-    void StopRecording()
+    public void StopRecording()
     {
         if (recordingCoroutine != null)
         {
